@@ -1,0 +1,14 @@
+.ratings-select {
+  display: flex;
+  flex-direction: column;
+  margin: calc(var(--basic-margin)) 0;
+  justify-content: space-between;
+}
+
+/* .ratings-select label {
+  font-size: var(--label-font-size);
+}
+
+.ratings-select select {
+  font-size: var(--emoji-font-size);
+} */
