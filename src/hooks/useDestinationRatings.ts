@@ -1,5 +1,8 @@
 import { useEffect, useCallback, useState, useContext } from "react";
-import { getRatingsForRestaurantbyUser } from "../util/firebaseQueries";
+import {
+  getRatingsForRestaurantbyUser,
+  getNotesForRestaurantbyUser,
+} from "../util/firebaseQueries";
 import useFirebaseAuthState from "./useFirebaseAuthState";
 import { FirebaseContext } from "../App";
 
@@ -14,6 +17,16 @@ export const useDestinationRatings = (destination) => {
   const [sauce, setSauce] = useState("-");
   const [value, setValue] = useState("-");
   const [bonus, setBonus] = useState("-");
+  const [notes, setNotes] = useState("-");
+
+  const refetchNotes = useCallback(async () => {
+    const notes = await getNotesForRestaurantbyUser(
+      firestore,
+      destination.name,
+      user.uid
+    );
+    setNotes(notes.note);
+  }, [destination.name, user.uid, firestore]);
 
   const refetchRatings = useCallback(async () => {
     const ratings = await getRatingsForRestaurantbyUser(
@@ -37,7 +50,14 @@ export const useDestinationRatings = (destination) => {
 
   useEffect(() => {
     refetchRatings();
-  }, [destination, refetchRatings]);
+    refetchNotes();
+  }, [destination, refetchRatings, refetchNotes]);
 
-  return { refetchRatings, scores: { wrapper, filling, sauce, value, bonus } };
+  return {
+    refetchRatings,
+    refetchNotes,
+    setNotes,
+    notes,
+    scores: { wrapper, filling, sauce, value, bonus },
+  };
 };

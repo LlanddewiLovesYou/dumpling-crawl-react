@@ -19,11 +19,7 @@
   font-weight: 800;
 }
 
-/* .destination label {
-  font-size: var(--label-font-size);
-} */
-
-/* .destination textarea {
-  margin-bottom: var(--basic-margin);
-  min-width: max-content;
-} */
+form {
+  display: flex;
+  flex-direction: column;
+}
