@@ -8,14 +8,12 @@ interface Props {
 }
 
 export const Result: React.FC<Props> = ({ result }) => {
-  console.log({ result });
   return (
     <div>
       <div className="restaurant-name">{result.restaurantName}</div>
       <div className="ratings">
         <div>
           <label>Wrapper:</label>
-          <div>{result.average.wrapper}</div>
         </div>
         <div>
           <label>Filling:</label>

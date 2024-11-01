@@ -8,7 +8,7 @@ type Rubric = ["Wrapper", "Filling", "Sauce", "Value", "Bonus"];
 
 export type Result = {
   restaurantName: string;
-  average: Record<RubricString, string | number>;
+  average: Record<RubricString, string>;
 };
 
 type Constants = {

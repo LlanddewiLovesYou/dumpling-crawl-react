@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { getAllRestaurantRatings } from "../util/firebaseQueries";
 import { FirebaseContext, RestRubricContext } from "../App";
 import { Result } from "../components/Result/Result";
+import { Result as ResultType } from "../types";
 
 export const ResultsPage: React.FC = () => {
   const { firestore } = useContext(FirebaseContext);
@@ -115,11 +116,18 @@ export const ResultsPage: React.FC = () => {
     };
   };
 
+  const isValidResult = (result: ResultType): boolean => {
+    const valid =
+      Object.values(result.average).filter((value) => parseFloat(value))
+        .length === 5;
+    return valid ? true : false;
+  };
+
   return (
     <>
       <h2>Current Scores</h2>
       {reviews.map((result) => {
-        return <Result result={result} />;
+        return isValidResult(result) ? <Result result={result} /> : null;
       })}
     </>
   );
