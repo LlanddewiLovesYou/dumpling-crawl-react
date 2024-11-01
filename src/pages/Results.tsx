@@ -118,13 +118,8 @@ export const ResultsPage: React.FC = () => {
   return (
     <>
       <h2>Current Scores</h2>
-      {reviews.map((review) => {
-        return (
-          <Result
-            restaurantName={review.restaurantName}
-            average={review.average}
-          />
-        );
+      {reviews.map((result) => {
+        return <Result result={result} />;
       })}
     </>
   );

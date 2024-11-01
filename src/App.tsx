@@ -3,10 +3,12 @@ import { createContext } from "react";
 import { NavBar } from "./components/NavBar/NavBar";
 
 import firebase from "firebase/compat/app";
-import { getFirestore } from "firebase/firestore";
+import "firebase/compat/firestore";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 import { Router } from "./components/Router";
+import { Constants } from "./types";
 
 const fbApp = firebase.initializeApp({
   apiKey: "AIzaSyA5JjQ3CiTcr1kzZN51xBYrbMbIqX616Pk",
@@ -20,11 +22,11 @@ const fbApp = firebase.initializeApp({
 const auth = getAuth(fbApp);
 const firestore = getFirestore(fbApp);
 
-export const FirebaseContext = createContext({});
+export const FirebaseContext = createContext(null);
 
-export const RestRubricContext = createContext({});
+export const RestRubricContext = createContext(null);
 
-const constants = {
+const constants: Constants = {
   restaurants: [
     {
       name: "1. Wu's Wonton King",
