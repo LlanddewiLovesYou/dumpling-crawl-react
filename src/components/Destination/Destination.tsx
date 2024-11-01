@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Destination: React.FC<Props> = ({ restaurant, rubric }) => {
-  const { scores, fetchRatings } = useDestinationRatings(restaurant);
+  const { scores, refetchRatings } = useDestinationRatings(restaurant);
   return (
     <div className="destination">
       <a className="restaurant-name" href={restaurant.mapUrl}>
@@ -23,7 +23,7 @@ export const Destination: React.FC<Props> = ({ restaurant, rubric }) => {
               emoji="🥟"
               label={cat}
               destination={restaurant.name}
-              fetchRatings={fetchRatings}
+              refetchRatings={refetchRatings}
               score={scores[cat.toLocaleLowerCase()]}
             />
           );

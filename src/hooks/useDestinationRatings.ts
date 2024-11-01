@@ -1,8 +1,3 @@
-// takes in destination
-// when dest changes it qureis for all destination/user ratings
-// return the values for the five different selects
-// also returns callback that knows how to can kick off refetch of queries
-
 import { useEffect, useCallback, useState, useContext } from "react";
 import { getRatingsForRestaurantbyUser } from "../util/firebaseQueries";
 import useFirebaseAuthState from "./useFirebaseAuthState";
@@ -20,7 +15,7 @@ export const useDestinationRatings = (destination) => {
   const [value, setValue] = useState("-");
   const [bonus, setBonus] = useState("-");
 
-  const fetchRatings = useCallback(async () => {
+  const refetchRatings = useCallback(async () => {
     const ratings = await getRatingsForRestaurantbyUser(
       firestore,
       destination.name,
@@ -41,8 +36,8 @@ export const useDestinationRatings = (destination) => {
   }, [destination, user, firestore]);
 
   useEffect(() => {
-    fetchRatings();
-  }, [destination, fetchRatings]);
+    refetchRatings();
+  }, [destination, refetchRatings]);
 
-  return { fetchRatings, scores: { wrapper, filling, sauce, value, bonus } };
+  return { refetchRatings, scores: { wrapper, filling, sauce, value, bonus } };
 };

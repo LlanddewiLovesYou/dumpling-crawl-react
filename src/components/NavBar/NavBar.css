@@ -1,9 +1,29 @@
 .nav-bar {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
 }
 
 .nav-bar a {
   font-size: calc(var(--label-font-size) + 2px);
+}
+
+.nav-bar a.head-link {
+  color: red;
+  margin: 0;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.login .links {
+  display: flex;
+  flex-direction: column;
+}
+
+.links > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.head-link {
 }

@@ -1,22 +1,22 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext } from "react";
 import "./RatingsSelect.css";
 import useFirebaseAuthState from "../../hooks/useFirebaseAuthState";
 import { FirebaseContext } from "../../App";
-import { sendReview, getRatingByKey } from "../../util/firebaseQueries";
+import { sendReview } from "../../util/firebaseQueries";
 
 interface Props {
   emoji: string;
   label: string;
   destination: string;
   score: number;
-  fetchRatings: () => void;
+  refetchRatings: () => void;
 }
 
 export const RatingsSelect: React.FC<Props> = ({
   emoji,
   label,
   destination,
-  fetchRatings,
+  refetchRatings,
   score,
 }) => {
   const { user } = useFirebaseAuthState();
@@ -30,7 +30,7 @@ export const RatingsSelect: React.FC<Props> = ({
       <select
         name="ratings"
         onChange={(e) =>
-          sendReview(e, firestore, selectId, record, fetchRatings)
+          sendReview(e, firestore, selectId, record, refetchRatings)
         }
         value={score}
       >

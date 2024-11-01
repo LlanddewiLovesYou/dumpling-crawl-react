@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-
 import { Destination } from "../components/Destination/Destination";
 import { RestRubricContext } from "../App";
+import "./Main.css";
 
 export const MainPage: React.FC = () => {
   const { restaurants, rubric } = useContext(RestRubricContext);
@@ -14,22 +14,16 @@ export const MainPage: React.FC = () => {
         rubric={rubric}
       />
       <button
-        onClick={() =>
-          currentRestaurant > 0
-            ? setCurrentRestaurant(currentRestaurant - 1)
-            : null
-        }
+        disabled={!(currentRestaurant > 0)}
+        onClick={() => setCurrentRestaurant(currentRestaurant - 1)}
       >
-        ⬅️
+        ⬅️ Prev Restaurant
       </button>
       <button
-        onClick={() =>
-          currentRestaurant < restaurants.length - 1
-            ? setCurrentRestaurant(currentRestaurant + 1)
-            : null
-        }
+        disabled={!(currentRestaurant < restaurants.length - 1)}
+        onClick={() => setCurrentRestaurant(currentRestaurant + 1)}
       >
-        ➡️
+        Next Restaurant ➡️
       </button>
     </>
   );
