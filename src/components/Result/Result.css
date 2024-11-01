@@ -9,3 +9,11 @@
   font-size: 13px;
   margin-right: 12px;
 }
+
+.green {
+  color: rgb(136, 209, 26);
+}
+
+.red {
+  color: red;
+}

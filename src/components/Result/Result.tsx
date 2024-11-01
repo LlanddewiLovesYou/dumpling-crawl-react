@@ -8,28 +8,48 @@ interface Props {
 }
 
 export const Result: React.FC<Props> = ({ result }) => {
+  const colorRating = (score) => {
+    if (score > 4.0) {
+      return "green";
+    } else if (score < 2.0) {
+      return "red";
+    } else {
+      return null;
+    }
+  };
   return (
     <div>
       <div className="restaurant-name">{result.restaurantName}</div>
       <div className="ratings">
         <div>
           <label>Wrapper:</label>
+          <div className={colorRating(result.average.wrapper)}>
+            {result.average.wrapper}
+          </div>
         </div>
         <div>
           <label>Filling:</label>
-          <div>{result.average.filling}</div>
+          <div className={colorRating(result.average.filling)}>
+            {result.average.filling}
+          </div>
         </div>
         <div>
           <label>Sauce:</label>
-          <div>{result.average.sauce}</div>
+          <div className={colorRating(result.average.sauce)}>
+            {result.average.sauce}
+          </div>
         </div>
         <div>
           <label>Value:</label>
-          <div>{result.average.value}</div>
+          <div className={colorRating(result.average.value)}>
+            {result.average.value}
+          </div>
         </div>
         <div>
           <label>Bonus:</label>
-          <div>{result.average.bonus}</div>
+          <div className={colorRating(result.average.bonus)}>
+            {result.average.bonus}
+          </div>
         </div>
       </div>
     </div>
